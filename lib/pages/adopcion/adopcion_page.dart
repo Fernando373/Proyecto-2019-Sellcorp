@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:little_daffy/pages/adopcion/widgets/pet_adoption_widget.dart';
 import 'package:little_daffy/pages/home/category_list.dart';
 import 'package:little_daffy/pages/home/data.dart';
-import 'package:little_daffy/routes/routes.dart';
+import 'package:little_daffy/pages/home/principal.dart';
 import 'package:little_daffy/utils/app_colors.dart';
+import 'package:little_daffy/widgets/menu.dart';
 
 class AdopcionPage extends StatefulWidget {
   @override
@@ -21,105 +22,108 @@ class _AdopcionPageState extends State<AdopcionPage> {
       appBar: AppBar(
         title: Text("LITTLE DAFFY"),
         brightness: Brightness.light,
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.primary,
         elevation: 0,
       ),
-      drawer: _MenuPrincipal(),
+      drawer: MenuPrincipal(),
       
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding( 
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text(" "),
-            ),
+      body: Container(
+        decoration: BoxDecoration(gradient: bgGradient()),
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding( 
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text(" "),
+              ),
 
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text(
-                "Mascotas en adopcion",
-                style: TextStyle(
-                  color: Colors.grey[800],
-                  fontSize: 24,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Text(
+                  "Mascotas en adopcion",
+                  style: TextStyle(
+                    color: Colors.grey[800],
+                    fontSize: 24,
+                  ),
                 ),
               ),
-            ),
 
-            Padding(
-              padding: EdgeInsets.all(16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+              Padding(
+                padding: EdgeInsets.all(16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
 
-                  Text(
-                    "Categoria de mascotas",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                    Text(
+                      "Categoria de mascotas",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[800],
+                      ),
+                    ),
+
+                    Icon(
+                      Icons.more_horiz,
                       color: Colors.grey[800],
                     ),
-                  ),
 
-                  Icon(
-                    Icons.more_horiz,
-                    color: Colors.grey[800],
-                  ),
-
-                ],
+                  ],
+                ),
               ),
-            ),
 
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      buildPetCategory(Category.HAMSTER, "56", Colors.orange[200]),
-                      buildPetCategory(Category.CAT, "210", Colors.blue[200]),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      buildPetCategory(Category.BUNNY, "90", Colors.green[200]),
-                      buildPetCategory(Category.DOG, "340", Colors.red[200]),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-
-            Padding(
-              padding: EdgeInsets.all(16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-
-                  Text(
-                    "Nuevas publicaciones",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey[800],
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        buildPetCategory(Category.HAMSTER, "56", Colors.orange[200]),
+                        buildPetCategory(Category.CAT, "210", Colors.blue[200]),
+                      ],
                     ),
-                  ),
-                ],
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        buildPetCategory(Category.BUNNY, "90", Colors.green[200]),
+                        buildPetCategory(Category.DOG, "340", Colors.red[200]),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
 
-            Container(
-              height: 500,
-              child: ListView(
-                physics: BouncingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                children: buildNewestPet(),
+              Padding(
+                padding: EdgeInsets.all(16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+
+                    Text(
+                      "Nuevas publicaciones",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[800],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+
+              Container(
+                height: 500,
+                child: ListView(
+                  physics: BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  children: buildNewestPet(),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -326,72 +330,3 @@ class _AdopcionPageState extends State<AdopcionPage> {
 
 }
 
-class _MenuPrincipal extends StatelessWidget {
-  
-  @override
-  Widget build(BuildContext context){
-    return Drawer(
-          child: Container(
-        child: Column(
-          children: <Widget>[
-            SafeArea(
-              child: Container(
-                color: AppColors.primary,
-                padding: EdgeInsets.all(35),
-                width: double.infinity,
-                height: 200,
-                child: CircleAvatar(
-                  child: Text('LD', 
-                    style: TextStyle(fontSize: 50), 
-                  ), 
-                ),
-              ),
-            ),
-            Container(
-              // color: Colors.transparent,
-              child: Expanded(
-                child: _ListaBotones()
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _ListaBotones extends StatelessWidget{
-
-  @override
-  Widget build(BuildContext context){
-
-    
-
-    return Container(
-      decoration: new BoxDecoration (
-                color: AppColors.primary
-      ),
-      child: ListView.separated(
-        
-        physics: BouncingScrollPhysics(),
-        separatorBuilder: (context, i) => Divider(
-          color: Colors.black,
-        ),
-        itemCount: pageRoutes.length,
-        itemBuilder: (context, i) => ListTile(
-          tileColor: Colors.transparent,
-          leading: Icon(pageRoutes[i].icon, color: Colors.blue),
-          title: Text(pageRoutes[i].titulo, style: TextStyle(color: Colors.black)),
-          trailing: Icon(Icons.chevron_right, color: Colors.blue),
-          onTap: (){
-            Navigator.push(
-             context,
-             MaterialPageRoute(builder: (context) => pageRoutes[i].page)
-            );
-          },
-
-        ),
-      ),
-    );
-  }
-}
