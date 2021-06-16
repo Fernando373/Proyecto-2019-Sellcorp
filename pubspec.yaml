@@ -36,9 +36,9 @@ dependencies:
   animate_do: ^1.7.2
   polyline: ^1.0.2
   image_picker: ^0.6.0+2 
-  mime_type: 
-  firebase_core: 
-  firebase_auth: 
+  mime_type:
+  firebase_core: ^0.4.4+3
+  firebase_auth: ^0.16.0
   google_sign_in: ^4.4.1
   flutter_facebook_auth: ^0.2.1
   url_launcher: ^5.7.10
